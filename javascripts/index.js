@@ -1,9 +1,11 @@
 function initialize() {
     var markers = [];
     
-    var mapOptions = {center: new google.maps.LatLng(25.019530, 121.541258),
-                      zoom: 17,
-                      mapTypeId: google.maps.MapTypeId.ROADMAP};
+    var mapOptions = {
+        center: new google.maps.LatLng(25.019530, 121.541258),
+        zoom: 17,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
     
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
@@ -14,6 +16,13 @@ function initialize() {
 
     var searchBox = new google.maps.places.SearchBox(
         /** @type {HTMLInputElement} */(input));
+    
+    // Add simple marker to each restaurant
+    var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(25.019530, 121.541258),
+        map: map,
+        title: 'Yo! Food Map'
+    });
     
     // Listen for the event fired when the user selects an item from the
     // pick list. Retrieve the matching places for that item.
@@ -62,4 +71,3 @@ function initialize() {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-
