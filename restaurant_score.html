@@ -4,36 +4,16 @@
 	<title></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	
-	<script type="text/javascript" src="javascripts/restaurant_score.js"></script>
+	<script type="text/javascript" src="javascripts/restaurant.js"></script>
 	<script type="text/javascript" src="javascripts/jquery-1.4.3.js"></script>
 </head>
 <body>
-	<h1><a href = "restaurant.html">Rahdesign Cafe</a></h1>
+	<h1 id = "name"></h1>
 	<span style="font-family:Microsoft JhengHei">
 		<div id="score">
-			對於該家餐廳，您認為此店家<br/>
-			<form>
-				<input type="radio" name="All_score" value="1"> 極差
-				<input type="radio" name="All_score" value="2"> 差強人意
-				<input type="radio" name="All_score" value="3"> 普通
-				<input type="radio" name="All_score" value="4"> 不錯
-				<input type="radio" name="All_score" value="5"> 很棒!
-			</form>
-			
-			<br/>
-			對於該家餐廳，您認為摩卡巧克力
-			<form>
-				<input type="radio" name="Food1_score" value="1"> 極差
-				<input type="radio" name="Food1_score" value="2"> 差強人意
-				<input type="radio" name="Food1_score" value="3"> 普通
-				<input type="radio" name="Food1_score" value="4"> 不錯
-				<input type="radio" name="Food1_score" value="5"> 很棒!
-			</form>
-			
-			<br/>
-			對於該家餐廳，您認為蜂蜜麻吉鬆餅幾顆星<br/>
-			對於該家餐廳，您認為香蕉拿鐵幾顆星<br/>
-			對於該家餐廳，您是否覺得<br/>
+			<script>
+				Get_Restaurant("2");
+			</script>
 		<div>
 	</span>
 </body>
