@@ -39,14 +39,6 @@ html, body {
     float: right;
 }
 
-.sidebar {
-    display: inline-block;
-    float: left;
-    
-    width: 25%;
-    height: 94%;
-}
-
 #map {
     display: inline-block;
     float: left;
