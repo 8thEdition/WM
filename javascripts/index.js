@@ -1,30 +1,37 @@
 function initialize() {
-    var markers = [];
-    
-    var mapOptions = {
-        center: new google.maps.LatLng(25.019530, 121.541258),
-        zoom: 17,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    
-    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+	var markers = [];
 
-    // Create the search box and link it to the UI element.
+	var myLatlng = new google.maps.LatLng(25.019530, 121.541258);
+	var mapOptions = {
+		zoom: 17,
+		center: myLatlng
+	};
+
+	var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+	var marker = new google.maps.Marker({
+	  position: myLatlng,
+	  map: map,
+	  title: 'Uluru (Ayers Rock)'
+	});
+	
+	//Link to restaurant part
+	google.maps.event.addListener(marker, 'click', function() {
+		$id=1;
+		document.getElementById("autoclick").href="restaurant.html?id="+$id;
+		jQuery(document).ready(function() 
+		{ $("#autoclick").trigger('click'); }); 
+	});
+	
+	// Create the search box and link it to the UI element.
     var input = /** @type {HTMLInputElement} */(
         document.getElementById('pac-input'));
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     var searchBox = new google.maps.places.SearchBox(
         /** @type {HTMLInputElement} */(input));
-    
-    // Add simple marker to each restaurant
-    var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(25.019530, 121.541258),
-        map: map,
-        title: 'Yo! Food Map'
-    });
-    
-    // Listen for the event fired when the user selects an item from the
+     
+	// Listen for the event fired when the user selects an item from the
     // pick list. Retrieve the matching places for that item.
     google.maps.event.addListener(searchBox, 'places_changed', function() {
         var places = searchBox.getPlaces();
