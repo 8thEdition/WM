@@ -1,5 +1,5 @@
-function initialize() {
-	var markers = [];
+function initialize() {     
+    var markers = [];
 
 	var myLatlng = new google.maps.LatLng(25.019530, 121.541258);
 	var mapOptions = {
@@ -9,19 +9,92 @@ function initialize() {
 
 	var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-	var marker = new google.maps.Marker({
+    var restaurants = [], places = [];
+
+    $.ajax({
+        url: 'data/result.txt', 
+        success: function(rawData) {
+            //alert(rawData);
+            restaurants = rawData.split('--------------------');
+            //alert(restaurants);
+            
+            for (var i=0; i < restaurants.length - 1; i++) {
+                addMarker(restaurants[i], i);
+                /*var info = restaurants[i].split('\n');
+                var offset = i == 0 ? 0 : 1;
+                //alert(restaurants[i]);
+                var tmp = info[3 + offset].split(',');
+                var LatLng = new google.maps.LatLng(parseFloat(tmp[0]), parseFloat(tmp[1]));
+                //alert(tmp);
+                
+                var marker = new google.maps.Marker({
+                    position: LatLng,
+                    map: map, 
+                    title: info[0 + offset]
+                });
+                
+                places.push(marker);
+                
+                var a = document.createElement('a');
+                a.setAttribute('id', 'restaurant_' + parseInt(info[1 + offset]));
+                a.setAttribute('class', 'fancybox fancybox.iframe');
+                a.setAttribute('href', 'restaurant.html?id=' + parseInt(info[1 + offset]));
+                $('body').append(a);
+                
+                google.maps.event.addListener(marker, 'click', function() {
+                    var ID = parseInt(info[1 + offset]);
+                    jQuery(document).ready(function() {
+                        $('#restaurant_' + ID).trigger('click');
+                        map.setCenter(marker.getPosition());
+                    });
+                });*/
+            }
+        }
+    });
+    
+    function addMarker (place, index){
+        var info = place.split('\n');
+        var offset = index == 0 ? 0 : 1;
+        //alert(restaurants[i]);
+        var tmp = info[3 + offset].split(',');
+        var LatLng = new google.maps.LatLng(parseFloat(tmp[0]), parseFloat(tmp[1]));
+        //alert(tmp);
+        
+        var marker = new google.maps.Marker({
+            position: LatLng,
+            map: map, 
+            title: info[0 + offset]
+        });
+        
+        var ID = parseInt(info[1 + offset]);
+        
+        var a = document.createElement('a');
+        a.setAttribute('id', 'restaurant_' + ID);
+        a.setAttribute('class', 'fancybox fancybox.iframe');
+        a.setAttribute('href', 'restaurant.html?id=' + ID);
+        $('body').append(a);
+        
+        google.maps.event.addListener(marker, 'click', function() {
+            jQuery(document).ready(function() {
+                $('#restaurant_' + (ID)).trigger('click');
+                map.setCenter(marker.getPosition());
+            });
+        });
+    }
+    
+	/*var marker = new google.maps.Marker({
 	  position: myLatlng,
 	  map: map,
 	  title: 'Uluru (Ayers Rock)'
-	});
+	});*/
 	
 	//Link to restaurant part
-	google.maps.event.addListener(marker, 'click', function() {
+	/*google.maps.event.addListener(marker, 'click', function() {
 		$id=1;
 		document.getElementById("autoclick").href="restaurant.html?id="+$id;
 		jQuery(document).ready(function() 
 		{ $("#autoclick").trigger('click'); }); 
-	});
+	});*/
 	
 	// Create the search box and link it to the UI element.
     var input = /** @type {HTMLInputElement} */(

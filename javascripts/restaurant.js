@@ -62,8 +62,7 @@ function Scoring_content(info){
 	document.getElementById("score").innerHTML=content;	
 }
 
-function Restaurant_content(info){
-	
+function Restaurant_content(info){	
 	
 	document.getElementById("name").innerHTML= info[0] + "<a href=\"restaurant_score.html?id=" + Get_para("id")+ "\"><image src=\"image/score.png\" width = \"60px\"></a>";
 	document.getElementById("Address").innerHTML=info[2];
